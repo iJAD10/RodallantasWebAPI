@@ -92,5 +92,19 @@ namespace API_Roda_Llantas.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("RegistrarProductos")]
+        public IActionResult RegistrarProductos(ProductosEntities entidad)
+        {
+            try
+            {
+                return Ok(_productosModel.RegistrarProductos(entidad));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }

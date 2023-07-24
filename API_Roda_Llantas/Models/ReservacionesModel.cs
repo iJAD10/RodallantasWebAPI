@@ -25,7 +25,7 @@ namespace API_Roda_Llantas.Models
         {
             using (var conexion = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
-                int reservacion = conexion.Query<int>("RegistrarReservacion",
+                int reservacion = conexion.Query<int>("RegistrarReservacion2",
                     new { Res_Usuario_Id = entidad.Res_Usuario_Id, Res_Vehiculo = entidad.Veh_Id },
                     commandType: System.Data.CommandType.StoredProcedure).FirstOrDefault();
 

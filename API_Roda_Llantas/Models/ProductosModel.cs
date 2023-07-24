@@ -59,7 +59,15 @@ namespace API_Roda_Llantas.Models
             using (var conexion = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
                 return conexion.Execute("RegistrarProductos",
-                    new { entidad.Prod_Id, entidad.Prod_Marca, entidad.Prod_Precio, entidad.Prod_Proveedor_Id },
+                    new
+                    {
+                        entidad.Prod_Marca,
+                        entidad.Prod_Precio,
+                        entidad.Prod_Proveedor_Id,
+                        entidad.Prod_CantStock,
+                        entidad.Prod_TipoProducto_Id,
+                        entidad.Prod_Url_Img
+                    },
                     commandType: System.Data.CommandType.StoredProcedure);
             }
         }
