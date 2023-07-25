@@ -64,7 +64,7 @@ namespace API_Roda_Llantas.Models
         {
             using (var conexion = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
-                return conexion.Execute("RegistrarUsuario",
+                return conexion.Execute("RegistrarVehiculos",
                     new { entidad.Veh_Placa, entidad.Veh_Marca, entidad.Veh_Modelo, entidad.Veh_Fecha_Lanzamiento },
                     commandType: System.Data.CommandType.StoredProcedure);
             }
