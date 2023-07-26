@@ -54,7 +54,7 @@ namespace API_Roda_Llantas.Models
             }
         }
 
-        public int RegistrarProductos(ProductosEntities entidad)
+        public int RegistrarProductos(ProductosRegistrarEntities entidad)
         {
             using (var conexion = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
@@ -70,6 +70,11 @@ namespace API_Roda_Llantas.Models
                     },
                     commandType: System.Data.CommandType.StoredProcedure);
             }
+        }
+
+        public int RegistrarProductos(ProductosEntities entidad)
+        {
+            throw new NotImplementedException();
         }
     }
 }

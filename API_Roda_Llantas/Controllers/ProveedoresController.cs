@@ -84,14 +84,32 @@ namespace API_Roda_Llantas.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("RegistrarProveedores")]
         public IActionResult RegistrarProveedores(ProveedoresEntities entidad)
         {
             try
             {
-                _proveedoresModel.RegistrarProveedores(entidad);
-                return Ok();
+                
+                return Ok(_proveedoresModel.RegistrarProveedores(entidad));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("ConsultarProveedorXNombre")]
+        public IActionResult ConsultarProveedorXNombre()
+        {
+            try
+            {
+                var resultado = _proveedoresModel.ConsultarProveedorXNombre();
+                if (resultado.Count == 0)
+                    return NotFound();
+                else
+                    return Ok(resultado);
             }
             catch (Exception ex)
             {

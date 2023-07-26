@@ -21,13 +21,12 @@ namespace API_Roda_Llantas.Models
                 return conexion.Execute("RegistrarProveedores",
                     new
                     {
-                        entidad.Prov_Apellido_Agente,
                         entidad.Prov_Nombre_Agente,
                         entidad.Prov_Correo,
                         entidad.Prov_Direccion,
                         entidad.Prov_Telefono,
-                        entidad.Prov_Telefono_Fijo,
                         entidad.Prov_Nombre_Empresa
+                        
                     },
                     commandType: System.Data.CommandType.StoredProcedure);
             }
@@ -82,5 +81,14 @@ namespace API_Roda_Llantas.Models
             }
         }
 
+        public List<ProveedoresEntities> ConsultarProveedorXNombre()
+        {
+            using (var conexion = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            {
+                return conexion.Query<ProveedoresEntities>("ConsultarProveedorXNombre",
+                                        new { },
+                                        commandType: System.Data.CommandType.StoredProcedure).ToList();
+            }
+        }
     }
 }

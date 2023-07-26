@@ -94,7 +94,7 @@ namespace API_Roda_Llantas.Controllers
 
         [HttpPost]
         [Route("RegistrarProductos")]
-        public IActionResult RegistrarProductos(ProductosEntities entidad)
+        public IActionResult RegistrarProductos(ProductosRegistrarEntities entidad)
         {
             try
             {
