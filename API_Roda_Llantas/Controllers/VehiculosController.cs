@@ -99,11 +99,16 @@ namespace API_Roda_Llantas.Controllers
             try
             {
                 return Ok(_vehiculosModel.RegistrarVehiculos(entidad));
+
             }
+
+
+
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
+            
         }
     }
 }
