@@ -33,6 +33,22 @@ namespace API_Roda_Llantas.Controllers
             }
         }
 
+
+        [HttpPost]
+        [Route("RegistrarVehiculoYReservacion")]
+        public IActionResult RegistrarVehiculoYReservacion(ReservacionesEntities entidad)
+        {
+            try
+            {
+                return Ok(_reservacionesModel.RegistrarVehiculoYReservacion(entidad));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
         [HttpGet]
         [Route("ConsultarReservaciones")]
 
