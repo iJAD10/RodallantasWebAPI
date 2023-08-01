@@ -58,14 +58,14 @@ namespace API_Roda_Llantas.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpGet]
         [Route("ConsultarProductoXID")]
-        public IActionResult ConsultarProductoXID(TipoProductoEntities entidad)
+        public IActionResult ConsultarProductoXID(int Id)
 
         {
             try
             {
-                var resultado = _productosModel.ConsultarProductoXID(entidad);
+                var resultado = _productosModel.ConsultarProductoXID(Id);
                 if (resultado == null)
                     return NotFound();
                 else

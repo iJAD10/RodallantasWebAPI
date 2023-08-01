@@ -34,12 +34,12 @@ namespace API_Roda_Llantas.Models
             }
         }
 
-        public ProductosEntities ConsultarProductoXID(TipoProductoEntities entidad)
+        public ProductosEntities ConsultarProductoXID(int Id)
         {
             using (var conexion = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
                 return conexion.Query<ProductosEntities>("ConsultarProductoXID",
-                                    new { @Id_producto = entidad.TP_Id },
+                                    new { Id },
                                     commandType: System.Data.CommandType.StoredProcedure).FirstOrDefault()!;
             }
         }
