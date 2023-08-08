@@ -30,5 +30,45 @@ namespace API_Roda_Llantas.Models
                 return true;
             }
         }
+
+        public CarritoEntities? MostrarCarritoTemporal(long Usu_Id)
+        {
+            using (var conexion = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            {
+                return conexion.Query<CarritoEntities>("MostrarCarritoTemporal",
+                                    new { Usu_Id },
+                                    commandType: System.Data.CommandType.StoredProcedure).FirstOrDefault();
+            }
+        }
+
+        public List<CarritoEntities> MostrarCarritoTotal(long Usu_Id)
+        {
+            using (var conexion = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            {
+                return conexion.Query<CarritoEntities>("MostrarCarritoTotal",
+                                    new { Usu_Id },
+                                    commandType: System.Data.CommandType.StoredProcedure).ToList();
+            }
+        }
+
+        public void ConfirmarPago(CarritoEntities entidad)
+        {
+            using (var conexion = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            {
+                conexion.Execute("ConfirmarPago",
+                                    new { entidad.Usu_Id },
+                                    commandType: System.Data.CommandType.StoredProcedure);
+            }
+        }
+
+        public List<CarritoEntities> MostrarFacturasRealizadas(long Usu_Id)
+        {
+            using (var conexion = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            {
+                return conexion.Query<CarritoEntities>("MostrarFacturasRealizadas",
+                                    new { Usu_Id },
+                                    commandType: System.Data.CommandType.StoredProcedure).ToList();
+            }
+        }
     }
 }
