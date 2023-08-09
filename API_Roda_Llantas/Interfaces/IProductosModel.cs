@@ -10,6 +10,6 @@ namespace API_Roda_Llantas.Interfaces
         public int RegistrarProductos(ProductosRegistrarEntities entidad);
         public void ActualizarProductos(ProductosEntities e);
 
-
+        public void AgregarProductoACarrito(int usuId, int prodId, int cantidad);
     }
 }

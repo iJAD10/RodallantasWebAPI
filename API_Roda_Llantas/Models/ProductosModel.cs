@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace API_Roda_Llantas.Models
 {
-    public class ProductosModel: IProductosModel
+    public class ProductosModel : IProductosModel
     {
         private IConfiguration _configuration;
 
@@ -72,9 +72,25 @@ namespace API_Roda_Llantas.Models
             }
         }
 
-        public int RegistrarProductos(ProductosEntities entidad)
+        public void AgregarProductoACarrito(int usuId, int prodId, int cantidad)
         {
-            throw new NotImplementedException();
+            using (var conexion = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            {
+                try
+                {
+                    conexion.Execute("AgregarProductoCarrito",
+                        new { @Usu_Id = usuId, @Prod_Id = prodId, @Cantidad = cantidad },
+                        commandType: System.Data.CommandType.StoredProcedure);
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 51000)  // El número de error que has definido en el THROW de tu SP
+                    {
+                        throw new Exception("No hay suficiente stock del producto seleccionado.");
+                    }
+                    throw;  // Si no es el error esperado, relanza la excepción original.
+                }
+            }
         }
     }
 }

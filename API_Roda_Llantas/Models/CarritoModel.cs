@@ -30,5 +30,16 @@ namespace API_Roda_Llantas.Models
                 return true;
             }
         }
+
+        public IEnumerable<CarritoListarEntities> ListarCarritoPorUsuario(int usuId)
+        {
+            using (var conexion = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            {
+                return conexion.Query<CarritoListarEntities>("ListarCarritoPorUsuario",
+                    new { @Usu_Id = usuId },
+                    commandType: System.Data.CommandType.StoredProcedure);
+            }
+        }
+
     }
 }

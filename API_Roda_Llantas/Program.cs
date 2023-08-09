@@ -25,6 +25,7 @@ builder.Services.AddScoped<IProveedoresModel, ProveedoresModel>();
 builder.Services.AddScoped<IServiciosModel, ServiciosModel>();  
 builder.Services.AddScoped<IFacturaModel, FacturaModel>();
 builder.Services.AddScoped<IReservacionesModel, ReservacionesModel>();
+builder.Services.AddScoped<ICompras, ComprasModel>();
 
 builder.Services.AddSwaggerGen(options => {
     options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme

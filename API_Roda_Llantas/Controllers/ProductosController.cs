@@ -106,5 +106,26 @@ namespace API_Roda_Llantas.Controllers
             }
         }
 
+        [HttpPost("AgregarProductoACarrito")]
+        public IActionResult AgregarProductoACarrito([FromBody] CarritoRequest request)
+        {
+            try
+            {
+                _productosModel.AgregarProductoACarrito(request.Usu_Id, request.Prod_Id, request.Cantidad);
+                return Ok(new { Message = "Producto agregado al carrito exitosamente." });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+        }
+    }
+
+    public class CarritoRequest
+    {
+        public int Usu_Id { get; set; }
+        public int Prod_Id { get; set; }
+        public int Cantidad { get; set; }
+
     }
 }
