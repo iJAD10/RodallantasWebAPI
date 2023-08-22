@@ -23,6 +23,15 @@ namespace API_Roda_Llantas.Models
                                     commandType: System.Data.CommandType.StoredProcedure).ToList();
             }
         }
+        public List<ProductosRegistrarEntities> ConsultarProductosConStock()
+        {
+            using (var conexion = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            {
+                return conexion.Query<ProductosRegistrarEntities>("ConsultarProductosConStock",
+                                    new { },
+                                    commandType: System.Data.CommandType.StoredProcedure).ToList();
+            }
+        }
 
         public List<ProductosEntities> ConsultarProductosXIDTipoProducto(TipoProductoEntities entidad)
         {
@@ -62,6 +71,8 @@ namespace API_Roda_Llantas.Models
                     new
                     {
                         entidad.Prod_Marca,
+                        entidad.Prod_Nombre,
+                        entidad.Prod_Descripcion,
                         entidad.Prod_Precio,
                         entidad.Prod_Proveedor_Id,
                         entidad.Prod_CantStock,

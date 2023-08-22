@@ -1,4 +1,8 @@
-﻿using API_Roda_Llantas.Interfaces;
+﻿using API_Roda_Llantas.Entities;
+using API_Roda_Llantas.Interfaces;
+using Dapper;
+using System;
+using System.Data.SqlClient;
 using System.Net.Mail;
 
 namespace API_Roda_Llantas.Models
@@ -31,6 +35,20 @@ namespace API_Roda_Llantas.Models
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.EnableSsl = true;
             client.Send(msg);
+        }
+
+        public CountEntities Count()
+        {
+            using (var conexion = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+                try
+                {
+                    return conexion.Query<CountEntities>("sp_CountIDs",
+                                      commandType: System.Data.CommandType.StoredProcedure).FirstOrDefault()!;
+                }
+                catch (SqlException ex)
+                {
+                    throw;  // Si no es el error esperado, relanza la excepción original.
+                }
         }
     }
 }

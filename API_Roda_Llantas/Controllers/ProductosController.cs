@@ -39,6 +39,25 @@ namespace API_Roda_Llantas.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("ConsultarProductosConStock")]
+        public IActionResult ConsultarProductosConStock()
+
+        {
+            try
+            {
+                var resultado = _productosModel.ConsultarProductosConStock();
+                if (resultado.Count == 0)
+                    return NotFound();
+                else
+                    return Ok(resultado);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPut]
         [Route("ConsultarProductosXIDTipoProducto")]
         public IActionResult ConsultarProductosXIDTipoProducto(TipoProductoEntities entidad)

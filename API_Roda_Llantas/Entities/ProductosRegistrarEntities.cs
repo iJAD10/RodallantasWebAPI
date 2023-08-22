@@ -3,6 +3,8 @@
     public class ProductosRegistrarEntities
     {
         public string Prod_Marca { get; set; } = string.Empty;
+        public string Prod_Nombre { get; set; }
+        public string Prod_Descripcion { get; set; }
         public double Prod_Precio { get; set; }
         public int Prod_CantStock { get; set; }
         public int Prod_Proveedor_Id { get; set; }
