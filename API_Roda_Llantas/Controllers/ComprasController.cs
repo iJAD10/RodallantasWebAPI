@@ -25,7 +25,7 @@ namespace API_Roda_Llantas.Controllers
         {
             try
             {
-                _comprasModel.FinalizarCompra(request.Usu_Id, request.Total);
+                _comprasModel.FinalizarCompra(request.Usu_Id, request.Total, request.correoUsuario);
                 return Ok(new { Message = "Producto agregado al carrito exitosamente." });
             }
             catch (Exception ex)
@@ -82,6 +82,7 @@ namespace API_Roda_Llantas.Controllers
     {
         public int Usu_Id { get; set; }
         public int Total { get; set; }
+        public string correoUsuario { get; set; }  
 
     }
 }
