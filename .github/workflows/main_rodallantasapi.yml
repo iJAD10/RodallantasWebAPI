@@ -54,4 +54,4 @@ jobs:
           app-name: 'Rodallantasapi'
           slot-name: 'production'
           package: .
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_3b138023e42e451588b1625fe57d4450 }}
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_3b138023e42e451588b1625fe57d4450}}
